@@ -27,6 +27,22 @@
       } else {
         console.log("  Imagine this text is green: test has passed");
       }
+    },
+    isANoteController: function(potentialNoteController) {
+      if (potentialNoteController.constructor !== NoteController) {
+        throw new Error("Assertion failed: - not a NoteController");
+      } else {
+        console.log("  Imagine this text is green: test has passed");
+      }
+    },
+    elementContains: function(elementId, htmlString) {
+      var element = document.getElementById(elementId);
+      var elementHtml = element.innerHTML;
+      if (elementHtml !== htmlString) {
+        throw new Error("Assertion failed - html does not match");
+      } else {
+        console.log("  Imagine this text is green: test has passed");
+      }
     }
   };
   exports.assert = assert;
