@@ -8,12 +8,12 @@
   NoteListView.prototype.html = function() {
     var notes = this._noteList.notes();
 
-    var result = "";
+    var result = "<ul>";
     for (var i = 0; i < notes.length; i++) {
       var note = notes[i];
-      result += note.text();
+      result += "<li><div>" + note.text() + "</div></li>";
     }
-    return result;
+    return result + "</ul>";
   }
 
   exports.NoteListView = NoteListView;

@@ -2,6 +2,8 @@
 
 (function() {
 
+  console.log("Testing NoteListView:")
+
   var noteText = 'Note number one';
   var noteTextWithHTMLTags = '<ul><li><div>Note number one</div></li></ul>'
 
@@ -20,19 +22,22 @@
   var noteListView = new NoteListView(mockNoteList);
 
   function returnsAString() {
-    var testName = "NoteListView__returnsAString";
-    assert.isAString(noteListView.html(), testName);
+    console.log(" it returns a string");
+    assert.isAString(noteListView.html());
   };
   returnsAString();
 
   function stringContainsNotesData() {
-    var testName = "NoteListView__stringContainsNotesData";
-    assert.containsSubstring(noteListView.html(), noteText, testName);
+    console.log(" the string contains the notes data");
+    var htmlString = noteListView.html();
+    assert.containsSubstring(htmlString, noteText);
   };
   stringContainsNotesData();
 
   function stringContainsUlTags() {
-    var testName = "NoteListView_stringContainsUlTags";
-    assert.containsSubstring(noteListView.html(), noteTextWithHTMLTags, testName);
+    console.log(" the string contains ul tags");
+    var htmlString = noteListView.html();
+    assert.isSameAs(htmlString, noteTextWithHTMLTags);
   }
+  stringContainsUlTags();
 })();
