@@ -3,6 +3,7 @@
 (function() {
 
   var noteText = 'Note number one';
+  var noteTextWithHTMLTags = '<ul><li><div>Note number one</div></li></ul>'
 
   var mockNote = {
     text: function() {
@@ -29,4 +30,9 @@
     assert.containsSubstring(noteListView.html(), noteText, testName);
   };
   stringContainsNotesData();
+
+  function stringContainsUlTags() {
+    var testName = "NoteListView_stringContainsUlTags";
+    assert.containsSubstring(noteListView.html(), noteTextWithHTMLTags, testName);
+  }
 })();
