@@ -2,7 +2,7 @@
 
 (function(exports) {
   var Note = function(text) {
-    this._text = text + " error";
+    this._text = text;
   }
 
   Note.prototype.text = function() {
