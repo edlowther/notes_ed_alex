@@ -18,5 +18,12 @@
     return result + "</ul>";
   }
 
+  NoteListView.prototype.getNoteById = function(noteId) {
+    var notes = this._noteList.notes();
+    return notes.filter(function(note){
+      return note.id() === parseInt(noteId);
+    })[0];
+  }
+
   exports.NoteListView = NoteListView;
 })(this);
