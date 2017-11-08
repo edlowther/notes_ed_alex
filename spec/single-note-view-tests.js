@@ -1,5 +1,6 @@
 
 (function() {
+    console.log(SingleNoteView)
 
   function testNoteDisplaysContents() {
 
@@ -13,21 +14,14 @@
       }
     };
 
-    console.log(mockNote)
+    var singleNoteView = new SingleNoteView(mockNote);
 
-    var singleNoteView = {
-    singleNote: function() {
-      new singleNoteView(mockNote);
-    }
-  }
 
   console.log(singleNoteView)
 
-    var htmlToCheck = {
-      noteView: function() {
-        return singleNoteView.html();
-      }
-    }
+    var htmlToCheck = singleNoteView.html();
+
+
 
     console.log(htmlToCheck)
 
