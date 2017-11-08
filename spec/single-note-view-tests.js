@@ -1,32 +1,17 @@
+"use strict";
 
 (function() {
-    console.log(SingleNoteView)
-
+  console.log("Testing SingleNoteView: ")
   function testNoteDisplaysContents() {
-
-    var noteText = 'cheers beers';
-
-    console.log(noteText)
-
-    var mockNote =  {
+    console.log(" it returns a the text of a note wrapped in div tags");
+    var mockNote = {
       text: function() {
-        return noteText;
+        return 'Extremely interesting note';
       }
     };
-
     var singleNoteView = new SingleNoteView(mockNote);
-
-
-  console.log(singleNoteView)
-
     var htmlToCheck = singleNoteView.html();
-
-
-
-    console.log(htmlToCheck)
-
-    assert.isSameAs(htmlToCheck, '<div>cheers beers</div>');
+    assert.isSameAs(htmlToCheck, '<div>Extremely interesting note</div>');
   }
-
   testNoteDisplaysContents();
 })();
