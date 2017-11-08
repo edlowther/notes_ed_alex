@@ -4,7 +4,7 @@
       if (!assertionToCheck) {
         throw new Error("Assertion failed: " + testName + " is not true");
       } else {
-        console.log("  Imagine this text is green: " + testName + " has passed");
+        console.log("  Imagine this text is green: test has passed");
       }
     },
     isAString: function(potentialString, testName) {

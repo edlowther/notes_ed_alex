@@ -9,5 +9,9 @@
     return this._text;
   }
 
+  Note.prototype.intro = function() {
+    return this._text.substring(0, 20) + "...";
+  }
+
   exports.Note = Note;
 })(this);
