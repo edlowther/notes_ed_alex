@@ -13,7 +13,7 @@
   };
 
   NoteController.prototype.showNote = function() {
-    var noteId = this.getNoteIdFromUrl(); 
+    var noteId = this.getNoteIdFromUrl();
     var element = document.getElementById("note");
     var note = this._noteListView.getNoteById(noteId);
     console.log(noteId);
@@ -28,6 +28,15 @@
 
   NoteController.prototype.getNoteIdFromUrl = function() {
     return window.location.hash.split("#notes/")[1];
+  };
+
+  NoteController.prototype.listenForNewComments = function() {
+    var form = document.getElementById("addNoteForm");
+    var callback = function(e) {
+      e.preventDefault();
+      console.log(e.srcElement[0].value);
+    }
+    form.addEventListener("submit", callback);
   };
 
   exports.NoteController = NoteController;
