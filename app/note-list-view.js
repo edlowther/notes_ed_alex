@@ -10,9 +10,12 @@
     var intros = notes.map(function(note) {
       return note.intro();
     });
-    var result = "<ul><li><div>";
-    result += intros.join("</div></li><li><div>")
-    return result + "</div></li></ul>";
+    var result = "<ul>";
+    notes.forEach(function(note) {
+      result += "<li><div><a href=\"#notes/" + note.id() + "\">"
+      result += note.intro() + "</a></div></li>"
+    });
+    return result + "</ul>";
   }
 
   exports.NoteListView = NoteListView;

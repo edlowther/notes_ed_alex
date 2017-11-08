@@ -11,6 +11,9 @@
     },
     intro: function() {
       return noteText.substring(0, 20) + "...";
+    },
+    id: function() {
+      return 0;
     }
   }
 
@@ -35,15 +38,13 @@
   };
   stringContainsFirst20CharsOfNotesData();
 
-  function stringContainsUlTags() {
-    console.log(" the string contains ul tags");
-    var expectedHtml = '<ul><li><div>Lorem ipsum dolor si...</div></li></ul>'
+  function returnsCorrectHtmlForSingleNote() {
+    console.log(" the string contains ul tags and a href with the correct hash");
+    var expectedHtml = '<ul><li><div><a href="#notes/0">Lorem ipsum dolor si...</a></div></li></ul>'
     var htmlString = noteListView.html();
     assert.isSameAs(htmlString, expectedHtml);
   }
-  stringContainsUlTags();
-
-
+  returnsCorrectHtmlForSingleNote();
 
   var noteTextTwo = "The truly terrible thing is that everybody has their reasons"
   var mockNoteTwo = {
@@ -52,6 +53,9 @@
     },
     intro: function() {
       return noteTextTwo.substring(0, 20) + "...";
+    },
+    id: function() {
+      return 1;
     }
   }
 
@@ -65,7 +69,7 @@
 
   function returnsCorrectHtmlForMultipleNotes() {
     console.log(" the string works for more than one note");
-    var expectedHtml = '<ul><li><div>Lorem ipsum dolor si...</div></li><li><div>The truly terrible t...</div></li></ul>'
+    var expectedHtml = '<ul><li><div><a href="#notes/0">Lorem ipsum dolor si...</a></div></li><li><div><a href="#notes/1">The truly terrible t...</a></div></li></ul>'
     var htmlString = noteListViewTwo.html();
     assert.isSameAs(htmlString, expectedHtml);
   }
