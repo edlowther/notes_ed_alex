@@ -2,27 +2,25 @@
 
 (function(exports) {
 
-  var NoteController = function(noteListView) {
+  var NoteController = function(noteListModel, noteListView) {
+    this._noteListModel = noteListModel;
     this._noteListView = noteListView;
-    console.log(this._noteListView);
   };
 
-  NoteController.prototype.exportHtml = function(id) {
-    var element = document.getElementById(id);
-    element.innerHTML = this._noteListView.html();
+  NoteController.prototype.displayList = function() {
+    document.getElementById("list")
+      .innerHTML = this._noteListView.html();
   };
 
   NoteController.prototype.showNote = function() {
     var noteId = this.getNoteIdFromUrl();
-    var element = document.getElementById("note");
-    var note = this._noteListView.getNoteById(noteId);
-    console.log(noteId);
+    var note = this._noteListModel.getNoteById(noteId);
     var singleNoteView = new SingleNoteView(note);
-    element.innerHTML = singleNoteView.html();
+    document.getElementById("note")
+      .innerHTML = singleNoteView.html();
   };
 
   NoteController.prototype.makeUrlChangeShowNote = function() {
-    console.log("makeUrlChangeShowNote called ")
     window.addEventListener("hashchange", this.showNote.bind(this));
   };
 
@@ -30,13 +28,14 @@
     return window.location.hash.split("#notes/")[1];
   };
 
-  NoteController.prototype.listenForNewComments = function() {
+  NoteController.prototype.listenForNewNotes = function() {
     var form = document.getElementById("addNoteForm");
-    var callback = function(e) {
-      e.preventDefault();
-      console.log(e.srcElement[0].value);
+    var callback = function(event) {
+      event.preventDefault();
+      this._noteListModel.addNote(event.srcElement[0].value);
+      this.displayList();
     }
-    form.addEventListener("submit", callback);
+    form.addEventListener("submit", callback.bind(this));
   };
 
   exports.NoteController = NoteController;

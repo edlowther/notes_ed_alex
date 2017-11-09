@@ -13,7 +13,14 @@
 
   Notelist.prototype.notes = function() {
     return this._notes;
-  }
+  };
+
+  Notelist.prototype.getNoteById = function(noteId) {
+    var matchingNote = this._notes.filter(function(note){
+      return note.id() === parseInt(noteId);
+    })[0];
+    return matchingNote;
+  };
 
   exports.Notelist = Notelist;
 })(this);

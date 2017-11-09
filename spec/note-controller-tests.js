@@ -4,20 +4,32 @@
 
   console.log("Testing NoteController:");
 
-  var mockNoteListView = {
-    html: function() {
-      return "<ul><li><div>Favourite food: pesto</div></li></ul>";
-    },
+  var mockNoteListModel = {
     getNoteById: function() {
       return {
         text: function() {
           return "Favourite food: pesto";
         }
-      } 
+      }
+    },
+    addNote: function() {
+
     }
   }
 
-  var noteController = new NoteController(mockNoteListView);
+  var mockNoteListView = {
+    html: function() {
+      return "<ul><li><div>Favourite food: pesto</div></li></ul>";
+    }
+  }
+
+  var mockNoteListViewTwo = {
+    html: function() {
+      return "<ul><li><div>Favourite drink: tea...</div></li></ul>";
+    }
+  }
+
+  var noteController = new NoteController(mockNoteListModel, mockNoteListView);
 
   function canBeInstantiated() {
     console.log(" it returns a NoteController");
@@ -28,8 +40,8 @@
   function putsCorrectHtmlOnPage() {
     console.log(" it puts the right HTML on the page for the list");
     var expectedHtml = "<ul><li><div>Favourite food: pesto</div></li></ul>";
-    noteController.exportHtml("app");
-    assert.elementContains("app", expectedHtml);
+    noteController.displayList();
+    assert.elementContains("list", expectedHtml);
   };
   putsCorrectHtmlOnPage();
 
@@ -41,6 +53,16 @@
   };
   putsSingleNoteOnPage();
 
+  function handlesFormSubmitCorrectly() {
+    var noteController = new NoteController(mockNoteListModel, mockNoteListViewTwo);
+    noteController.listenForNewNotes();
+    document.getElementsByName("noteTextarea")[0].value = "Favourite drink: tea"
+    var addNoteSubmit = document.getElementById("addNoteSubmit");
+    addNoteSubmit.click();
+    var expectedText = "Favourite drink: tea...";
+    assert.elementContainsText("list", expectedText);
+  }
+  handlesFormSubmitCorrectly();
 
 
 })();

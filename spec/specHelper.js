@@ -19,6 +19,7 @@
         throw new Error("Assertion failed: " + testName + " - not in the string");
       } else {
         console.log("  Imagine this text is green: test has passed");
+        return true;
       }
     },
     isSameAs: function(stringA, stringB, testName) {
@@ -39,6 +40,16 @@
       var element = document.getElementById(elementId);
       var elementHtml = element.innerHTML;
       if (elementHtml !== htmlString) {
+        throw new Error("Assertion failed - html does not match");
+      } else {
+        console.log("  Imagine this text is green: test has passed");
+      }
+    },
+    elementContainsText: function(elementId, string) {
+      var element = document.getElementById(elementId);
+      var elementText = element.textContent;
+      console.log(elementText)
+      if (!this.containsSubstring(elementText, string)) {
         throw new Error("Assertion failed - html does not match");
       } else {
         console.log("  Imagine this text is green: test has passed");

@@ -6,7 +6,11 @@
   var Note = function(text) {
     this._text = text;
     this._id = noteCounter;
-    noteCounter++; 
+    noteCounter++;
+  }
+
+  Note.prototype.id = function() {
+    return this._id;
   }
 
   Note.prototype.text = function() {
@@ -15,10 +19,6 @@
 
   Note.prototype.intro = function() {
     return this._text.substring(0, 20) + "...";
-  }
-
-  Note.prototype.id = function() {
-    return this._id;
   }
 
   exports.Note = Note;
