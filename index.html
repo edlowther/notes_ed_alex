@@ -12,7 +12,13 @@
     <script src="app/note-controller.js"></script>
 
   <body>
-    <div id="app"></div>
+    <div id="form-container">
+      <form id="addNoteForm" >
+        <textarea rows="6" cols="50" name="noteTextarea"></textarea>
+        <input type="submit" id="addNoteSubmit" />
+      </form>
+    </div>
+    <div id="list"></div>
     <div id="note"></div>
   </body>
   <script src="app/app.js"></script>

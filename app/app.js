@@ -2,13 +2,12 @@
 
 (function() {
 
-  var noteList = new Notelist();
-  noteList.addNote("tiger");
-  noteList.addNote("cheetah");
-  var noteListView = new NoteListView(noteList);
-  console.log(noteListView); 
-  var noteController = new NoteController(noteListView);
-  noteController.exportHtml("app");
+  var noteListModel = new Notelist();
+  var noteListView = new NoteListView(noteListModel);
+  var noteController = new NoteController(noteListModel, noteListView);
+
+  noteController.displayList();
   noteController.makeUrlChangeShowNote();
+  noteController.listenForNewNotes();
 
 })();
