@@ -20,10 +20,6 @@
       .innerHTML = singleNoteView.html();
   };
 
-  NoteController.prototype.makeUrlChangeShowNote = function() {
-    window.addEventListener("hashchange", this.showNote.bind(this));
-  };
-
   NoteController.prototype.getNoteIdFromUrl = function() {
     return window.location.hash.split("#notes/")[1];
   };
