@@ -1,28 +1,23 @@
 'use strict';
 
-(function(exports) {
+var noteController = (function(exports) {
 
-  var PresentationController = function(noteListModel, noteListView) {
-    this._noteListModel = noteListModel;
-    this._noteListView = noteListView;
-  };
-
-  PresentationController.prototype.displayList = function() {
+  exports.displayList = function() {
     document.getElementById("list")
-      .innerHTML = this._noteListView.html();
+      .innerHTML = this.noteListView.html();
   };
 
-  PresentationController.prototype.showNote = function() {
+  exports.showNote = function() {
     var noteId = this.getNoteIdFromUrl();
-    var note = this._noteListModel.getNoteById(noteId);
+    var note = this.noteListModel.getNoteById(noteId);
     var singleNoteView = new SingleNoteView(note);
     document.getElementById("note")
       .innerHTML = singleNoteView.html();
   };
 
-  PresentationController.prototype.getNoteIdFromUrl = function() {
+  exports.getNoteIdFromUrl = function() {
     return window.location.hash.split("#notes/")[1];
   };
 
-  exports.PresentationController = PresentationController;
-})(this);
+  return exports;
+})(noteController);
