@@ -8,14 +8,14 @@ var noteController = (function(exports) {
   };
 
   exports.showNote = function() {
-    var noteId = this.getNoteIdFromUrl();
+    var noteId = getNoteIdFromUrl();
     var note = this.noteListModel.getNoteById(noteId);
     var singleNoteView = new SingleNoteView(note);
     document.getElementById("note")
       .innerHTML = singleNoteView.html();
   };
 
-  exports.getNoteIdFromUrl = function() {
+  var getNoteIdFromUrl = function() {
     return window.location.hash.split("#notes/")[1];
   };
 
